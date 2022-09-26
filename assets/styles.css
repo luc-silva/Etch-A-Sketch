@@ -24,16 +24,20 @@ body{
 #panel{
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    gap: 1rem;
+    justify-content: space-between;
     flex: 0 0 auto;
-
+    
     width: 35%;
     padding: 1rem;
-
+    
     text-align: center;
     background-color: rgb(236, 236, 236);
     border-right: 1px solid rgb(212, 212, 212);
+}
+#panel > div{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 h1{
     margin-bottom: 1rem;
@@ -46,21 +50,47 @@ button{
     background-color: white;
     outline: rgb(212, 212, 212) solid 1px;
 }
-
-#screen{
+input[type="color"]{
+    width: auto;
+    height: 2rem;
+    padding: 0;
+}
+/* #screen{
     display: flex;
+    justify-content: center;
+    align-content: center;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+} */
+#screen{
+    display: grid;
+    grid-template-columns: repeat(16, auto);
+    grid-template-rows: repeat(16, auto);
 
+    align-content: center;
+
+}
+#last-colors-display{
+    padding: 5px;
+    height: 3rem;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    
+    outline: rgb(212, 212, 212) solid 1px;
+    background-color: white;
 }
 .pixel{
     width: 30px;
     height: 30px;
-    flex: 1 1 auto;
-    background-color: aliceblue;
+    flex: 1 1 30px;
     outline: rgb(212, 212, 212) solid 1px;
-
+    background-color: white;
+}
+.black{
+    background-color: rgb(0, 0, 0);
+}
+.last-color{
+    width: 18%;
 }
