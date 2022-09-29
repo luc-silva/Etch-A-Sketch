@@ -11,21 +11,24 @@
         <div id="panel">
             <div>
                 <h1>Etch-a-Sketch</h1>
-                <input type="color" name="" id="color-selector" placeholder="">
+                <input type="color" id="color-selector" placeholder="">
                 <div id="last-colors-display">
                 </div>
             </div>
             <div>
-
                 <div>
                     <label for="">Grid</label>
-                    <input type="checkbox" name="" id="grid-checkbox" checked>
+                    <input type="checkbox" id="grid-checkbox" checked>
                     
                     <label for="">Click</label>
-                    <input type="checkbox" name="" id="click-checkbox">
+                    <input type="checkbox" id="click-checkbox">
                 </div>
                 <button id="random">Random</button>
                 <button id="eraser">Eraser</button>
+                <div>
+                    <div id="current-grid-size">16x16</div>
+                    <input type="range" min="16" value="16" max="100" id="grid-size">
+                </div>
             </div>
         </div>
         <div id="screen">
