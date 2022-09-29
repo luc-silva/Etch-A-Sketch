@@ -3,22 +3,12 @@ let enableGrid = document.querySelector("#grid-checkbox")
 let colorSelector = document.querySelector("#color-selector")
 let randomColor = document.querySelector("#random")
 let mainScreen = document.querySelector("#screen")
-let eraser = document.querySelector("#eraser")
+let eraserButton = document.querySelector("#eraser")
+let gridSize = document.querySelector("#grid-size")
 let lastColors = []
 let color = "#000000"
 
-randomColor.addEventListener("click", randomizer)
-function randomizer() {
-    let colors = ['#327abd', '#324abd', '#7132bd', '#bd3298', '#bd3232', '#bd8a32', '#adbd32', '#63bd32', '#32bd4a', '#32bd8f']
-    color = colors[Math.round(Math.random() * 10)]
-
-    return color
-}
-
-eraser.addEventListener("click", () => {
-    color = "#FFFFFF"
-})
-
+//Div creation and class atribution
 for(i = 0; i < 16**2; i++){
     let pixel = document.createElement("div")
     pixel.classList.add("pixel")
@@ -26,11 +16,29 @@ for(i = 0; i < 16**2; i++){
 }
 let pixels = document.querySelectorAll(".pixel")
 
+gridSize.addEventListener("change", () => {
+    console.log(gridSize.value)
+})
+
+let randomizerInterval
+randomColor.addEventListener("click",randomizer)
+function randomizer() {
+    randomizerInterval = setInterval(() => {
+        let colors = ['#1038d5', '#8610d5', '#d510c5', '#d51079', '#d51010', '#d57910', '#bed510', '#3bd510', '#10d579', '#10a4d5']
+        color = colors[Math.round(Math.random() * 10 - 1)]
+    })
+}
+
+
+eraserButton.addEventListener("click", eraser)
+function eraser() {
+    clearInterval(randomizerInterval)
+    color = "#FFFFFF"
+}
+
+
 colorSelector.addEventListener("change", () => {
-    if(lastColors.length >= 5){
-        lastColors.pop()
-    }
-    lastColors.unshift(color)
+    clearInterval(randomizerInterval)
     color = colorSelector.value
 })
 
@@ -60,7 +68,10 @@ function checkEnableGrid() {
 
 
 function paint(){
+    if(lastColors.length >= 5){
+        lastColors.pop()
+    }
+    lastColors.unshift(color)
     this.style.backgroundColor = color
-    console.log("oi")
 }
 checkEnableCLick()
