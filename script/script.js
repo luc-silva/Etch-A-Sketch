@@ -4,22 +4,43 @@ let colorSelector = document.querySelector("#color-selector")
 let randomColor = document.querySelector("#random")
 let mainScreen = document.querySelector("#screen")
 let eraserButton = document.querySelector("#eraser")
+let gridSizeText = document.querySelector("#current-grid-size")
 let gridSize = document.querySelector("#grid-size")
 let lastColors = []
 let color = "#000000"
 
-//Div creation and class atribution
-for(i = 0; i < 16**2; i++){
-    let pixel = document.createElement("div")
-    pixel.classList.add("pixel")
-    mainScreen.appendChild(pixel)
+//misc
+function paint(){
+    if(lastColors.length >= 5){
+        lastColors.pop()
+    }
+    if(!lastColors.includes(color)){
+        lastColors.unshift(color)
+    }
+    this.style.backgroundColor = color
 }
-let pixels = document.querySelectorAll(".pixel")
 
+//Div creation and class atribution
 gridSize.addEventListener("change", () => {
-    console.log(gridSize.value)
+    gridSizeText.textContent = `${gridSize.value}x${gridSize.value} `
+    createPixel()
 })
 
+let pixels
+function createPixel(){
+    mainScreen.textContent = ""
+    for(i = 0; i < gridSize.value**2; i++){
+        let pixel = document.createElement("div")
+        pixel.classList.add("pixel")
+        mainScreen.appendChild(pixel)
+    }
+    pixels = document.querySelectorAll(".pixel")
+
+    mainScreen.setAttribute("style", `grid-template-columns: repeat(${gridSize.value}, auto); grid-template-rows: repeat(${gridSize.value}, auto);`)
+    checkEnableCLick()
+}
+
+//buttons
 let randomizerInterval
 randomColor.addEventListener("click",randomizer)
 function randomizer() {
@@ -29,19 +50,18 @@ function randomizer() {
     })
 }
 
-
 eraserButton.addEventListener("click", eraser)
 function eraser() {
     clearInterval(randomizerInterval)
     color = "#FFFFFF"
 }
 
-
 colorSelector.addEventListener("change", () => {
     clearInterval(randomizerInterval)
     color = colorSelector.value
 })
 
+//features
 enableClick.addEventListener("change", checkEnableCLick)
 function checkEnableCLick(){
     (enableClick.checked)
@@ -67,11 +87,5 @@ function checkEnableGrid() {
 }
 
 
-function paint(){
-    if(lastColors.length >= 5){
-        lastColors.pop()
-    }
-    lastColors.unshift(color)
-    this.style.backgroundColor = color
-}
+createPixel()
 checkEnableCLick()
