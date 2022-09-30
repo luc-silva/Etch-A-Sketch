@@ -4,6 +4,7 @@ let colorSelector = document.querySelector("#color-selector")
 let randomColor = document.querySelector("#random")
 let mainScreen = document.querySelector("#screen")
 let eraserButton = document.querySelector("#eraser")
+let cleanButton = document.querySelector("#clean")
 let gridSizeText = document.querySelector("#current-grid-size")
 let gridSize = document.querySelector("#grid-size")
 let lastColors = []
@@ -54,6 +55,12 @@ eraserButton.addEventListener("click", eraser)
 function eraser() {
     clearInterval(randomizerInterval)
     color = "#FFFFFF"
+}
+cleanButton.addEventListener("click", clean)
+function clean(){
+    pixels.forEach((pixel) => {
+        pixel.style.backgroundColor = "#FFFFFF"
+    })
 }
 
 colorSelector.addEventListener("change", () => {
