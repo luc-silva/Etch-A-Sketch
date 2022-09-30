@@ -55,19 +55,13 @@ input[type="color"]{
     height: 2rem;
     padding: 0;
 }
-/* #screen{
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-} */
-#screen{
-    display: grid;
-    grid-template-columns: repeat(16, auto);
-    grid-template-rows: repeat(16, auto);
 
-    align-content: center;
+#screen{
+    display: inline-grid;
+    grid-template-columns: repeat(16, 2fr);
+    grid-template-rows: repeat(16, 2fr);
+    width: 65%;
+    height: 100%;
 
 }
 #last-colors-display{
@@ -82,9 +76,6 @@ input[type="color"]{
     background-color: white;
 }
 .pixel{
-    width: 30px;
-    height: 30px;
-    flex: 1 1 30px;
     outline: rgb(212, 212, 212) solid 1px;
     background-color: white;
 }
