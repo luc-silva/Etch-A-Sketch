@@ -7,18 +7,40 @@ let eraserButton = document.querySelector("#eraser")
 let cleanButton = document.querySelector("#clean")
 let gridSizeText = document.querySelector("#current-grid-size")
 let gridSize = document.querySelector("#grid-size")
+let lastColorDisplay = document.querySelector("#last-colors-display")
 let lastColors = []
 let color = "#000000"
 
 //misc
 function paint(){
-    if(lastColors.length >= 5){
-        lastColors.pop()
-    }
+    this.style.backgroundColor = color
     if(!lastColors.includes(color)){
         lastColors.unshift(color)
     }
-    this.style.backgroundColor = color
+    if(lastColors.length == 6){
+        lastColors.pop()
+    }
+    addColorBlock()
+}
+
+function addColorBlock(){
+    lastColorDisplay.textContent = ""
+    lastColors.forEach(function (colorValue){
+        let block = document.createElement("div")
+        block.style.backgroundColor = colorValue
+        block.classList.add("last-color")
+        lastColorDisplay.append(block)
+        getColorFromBlock()
+    })
+}
+
+function getColorFromBlock(){
+    let blocks = document.querySelectorAll(".last-color")
+    blocks.forEach(function (block){
+        block.addEventListener("click", function(){
+            color = this.style.backgroundColor
+        }, false)
+    })
 }
 
 //Div creation and class atribution
@@ -47,7 +69,7 @@ randomColor.addEventListener("click",randomizer)
 function randomizer() {
     randomizerInterval = setInterval(() => {
         let colors = ['#1038d5', '#8610d5', '#d510c5', '#d51079', '#d51010', '#d57910', '#bed510', '#3bd510', '#10d579', '#10a4d5']
-        color = colors[Math.round(Math.random() * 10 - 1)]
+        color = colors[Math.floor(Math.random() * 10)]
     })
 }
 
