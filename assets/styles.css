@@ -4,6 +4,12 @@
     font-family: Arial, Helvetica, sans-serif;
     color:rgb(71, 71, 71);
 }
+:root{
+    --hoverColor: rgb(137, 189, 219);
+    --activeColor: rgb(80, 138, 204);
+    --outlineColor: rgb(212, 212, 212);
+    --borderColor: rgb(212, 212, 212);
+}
 
 body{
     display: flex;
@@ -19,7 +25,8 @@ body{
     height: 500px;
 
     border-radius: 5px;
-    border: 1px solid rgb(212, 212, 212);
+    border: 1px solid var(--borderColor);
+    box-shadow: 0px 0px 20px 0px #07070749;
 }
 #panel{
     display: flex;
@@ -32,7 +39,7 @@ body{
     
     text-align: center;
     background-color: rgb(236, 236, 236);
-    border-right: 1px solid rgb(212, 212, 212);
+    border-right: 1px solid var(--borderColor);
 }
 #panel > div{
     display: flex;
@@ -46,15 +53,27 @@ button{
     padding: 0.5rem;
     border: none;
     font-size: 14px;
-
+    
     background-color: white;
-    outline: rgb(212, 212, 212) solid 1px;
+    outline: var(--outlineColor) solid 1px;
+}
+button:hover{
+    color: var(--hoverColor);
+    outline: var(--hoverColor) solid 1px;
+}
+button:active{
+    color: var(--activeColor) ;
+    outline: var(--activeColor) solid 1px;
 }
 input[type="color"]{
     width: auto;
     height: 2rem;
     padding: 0;
 }
+input[type="range"]{
+    width: 100%;
+}
+
 
 #screen{
     display: inline-grid;
@@ -65,18 +84,16 @@ input[type="color"]{
 
 }
 #last-colors-display{
+    display: flex;
     padding: 5px;
     height: 3rem;
-
-    display: flex;
-    justify-content: space-between;
-    gap: 5px;
+    gap: 8px;
     
-    outline: rgb(212, 212, 212) solid 1px;
+    outline: var(--outlineColor) solid 1px;
     background-color: white;
 }
 .pixel{
-    outline: rgb(212, 212, 212) solid 1px;
+    outline: var(--outlineColor) solid 1px;
     background-color: white;
 }
 .black{
@@ -84,4 +101,6 @@ input[type="color"]{
 }
 .last-color{
     width: 18%;
+    border-radius: 5px;
+    /* padding: 5px; */
 }
