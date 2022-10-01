@@ -46,9 +46,15 @@ body{
     flex-direction: column;
     gap: 1rem;
 }
+
 h1{
     margin-bottom: 1rem;
 }
+p {
+    text-align: start;
+    font-size: 0.8rem;
+}
+
 button{
     padding: 0.5rem;
     border: none;
@@ -67,8 +73,10 @@ button:active{
 }
 input[type="color"]{
     width: auto;
-    height: 2rem;
-    padding: 0;
+    height: 2.5rem;
+    padding: 2px;
+    border: 1px solid var(--borderColor);
+    background-color: white;
 }
 input[type="range"]{
     width: 100%;
@@ -83,6 +91,11 @@ input[type="range"]{
     height: 100%;
 
 }
+.pixel{
+    outline: var(--outlineColor) solid 1px;
+    background-color: white;
+}
+
 #last-colors-display{
     display: flex;
     padding: 5px;
@@ -91,13 +104,6 @@ input[type="range"]{
     
     outline: var(--outlineColor) solid 1px;
     background-color: white;
-}
-.pixel{
-    outline: var(--outlineColor) solid 1px;
-    background-color: white;
-}
-.black{
-    background-color: rgb(0, 0, 0);
 }
 .last-color{
     width: 18%;
